@@ -1,0 +1,25 @@
+const int doorPin = 2;
+const int buzzerPin = 6;
+const int ledPin = 5;
+
+void setup() {
+  pinMode(doorPin, INPUT_PULLUP);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600); // This opens communication to your computer
+}
+
+void loop() {
+  int status = digitalRead(doorPin);
+
+  if (status == HIGH) {
+    Serial.println("Arduino sees: DOOR OPEN");
+    digitalWrite(buzzerPin, HIGH);
+    digitalWrite(ledPin, HIGH);
+  } else {
+    Serial.println("Arduino sees: DOOR CLOSED");
+    digitalWrite(buzzerPin, LOW);
+    digitalWrite(ledPin, LOW);
+  }
+  delay(500); 
+}
